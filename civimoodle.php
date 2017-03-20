@@ -124,7 +124,7 @@ function civimoodle_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  */
 function civimoodle_civicrm_managed(&$entities) {
   $entities[] = array(
-   'module' => 'org.afabc.civimoodle',
+   'module' => 'biz.jmaconsulting.civimoodle.afabc',
    'name' => 'Add Red Flag activity',
    'entity' => 'Job',
    'params' => array (
@@ -198,7 +198,7 @@ function civimoodle_civicrm_preProcess($formName, &$form) {
  *
 function civimoodle_civicrm_navigationMenu(&$menu) {
   _civimoodle_civix_insert_navigation_menu($menu, NULL, array(
-    'label' => ts('The Page', array('domain' => 'org.afabc.civimoodle')),
+    'label' => ts('The Page', array('domain' => 'biz.jmaconsulting.civimoodle.afabc')),
     'name' => 'the_page',
     'url' => 'civicrm/the-page',
     'permission' => 'access CiviReport,access CiviContribute',

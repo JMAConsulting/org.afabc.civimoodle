@@ -1,1 +1,1 @@
-# org.afabc.civimoodle
+# biz.jmaconsulting.civimoodle.afabc

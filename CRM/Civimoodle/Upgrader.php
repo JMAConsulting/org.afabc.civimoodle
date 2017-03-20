@@ -25,7 +25,7 @@ class CRM_Civimoodle_Upgrader extends CRM_Civimoodle_Upgrader_Base {
     ));
 
     civicrm_api3('Navigation', 'create', array(
-      'label' => ts('CiviCRM Moodle Integration', array('domain' => 'org.afabc.civimoodle')),
+      'label' => ts('CiviCRM Moodle Integration', array('domain' => 'biz.jmaconsulting.civimoodle.afabc')),
       'name' => 'moodle_settings',
       'url' => 'civicrm/moodle/setting?reset=1',
       'domain_id' => CRM_Core_Config::domainID(),
@@ -39,7 +39,7 @@ class CRM_Civimoodle_Upgrader extends CRM_Civimoodle_Upgrader_Base {
 
     // Create custom set 'Moodle Credentials'
     $customGroup = civicrm_api3('custom_group', 'create', array(
-      'title' => ts('Moodle Credentials', array('domain' => 'org.afabc.civimoodle')),
+      'title' => ts('Moodle Credentials', array('domain' => 'biz.jmaconsulting.civimoodle.afabc')),
       'name' => 'moodle_credential',
       'extends' => 'Individual',
       'domain_id' => CRM_Core_Config::domainID(),
@@ -70,7 +70,7 @@ class CRM_Civimoodle_Upgrader extends CRM_Civimoodle_Upgrader_Base {
 
     // Create custom set 'Available Courses'
     $customGroup = civicrm_api3('custom_group', 'create', array(
-      'title' => ts('Available Courses', array('domain' => 'org.afabc.civimoodle')),
+      'title' => ts('Available Courses', array('domain' => 'biz.jmaconsulting.civimoodle.afabc')),
       'name' => 'moodle_courses',
       'extends' => 'Event',
       'domain_id' => CRM_Core_Config::domainID(),

@@ -39,7 +39,7 @@ class CRM_Civimoodle_Upgrader_Base {
     if (! self::$instance) {
       // FIXME auto-generate
       self::$instance = new CRM_Civimoodle_Upgrader(
-        'org.afabc.civimoodle',
+        'biz.jmaconsulting.civimoodle.afabc',
         realpath(__DIR__ .'/../../../')
       );
     }

@@ -175,7 +175,7 @@ function _civimoodle_civix_civicrm_managed(&$entities) {
     $es = include $file;
     foreach ($es as $e) {
       if (empty($e['module'])) {
-        $e['module'] = 'org.afabc.civimoodle';
+        $e['module'] = 'biz.jmaconsulting.civimoodle.afabc';
       }
       $entities[] = $e;
     }
@@ -204,7 +204,7 @@ function _civimoodle_civix_civicrm_caseTypes(&$caseTypes) {
       // throw new CRM_Core_Exception($errorMessage);
     }
     $caseTypes[$name] = array(
-      'module' => 'org.afabc.civimoodle',
+      'module' => 'biz.jmaconsulting.civimoodle.afabc',
       'name' => $name,
       'file' => $file,
     );
@@ -230,7 +230,7 @@ function _civimoodle_civix_civicrm_angularModules(&$angularModules) {
     $name = preg_replace(':\.ang\.php$:', '', basename($file));
     $module = include $file;
     if (empty($module['ext'])) {
-      $module['ext'] = 'org.afabc.civimoodle';
+      $module['ext'] = 'biz.jmaconsulting.civimoodle.afabc';
     }
     $angularModules[$name] = $module;
   }

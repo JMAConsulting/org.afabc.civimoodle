@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<extension key="org.afabc.civimoodle" type="module">
-  <downloadUrl>https://github.com/JMAConsulting/org.afabc.civimoodle/archive/v1.0.zip</downloadUrl>
+<extension key="biz.jmaconsulting.civimoodle.afabc" type="module">
+  <downloadUrl>https://github.com/JMAConsulting/biz.jmaconsulting.civimoodle.afabc/archive/v1.0.zip</downloadUrl>
   <file>civimoodle</file>
   <name>AFABC CiviCRM Moodle Integration Extension</name>
   <description></description>

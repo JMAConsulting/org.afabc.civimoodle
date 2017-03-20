@@ -1,5 +1,5 @@
-Package: org.afabc.civimoodle
-Copyright (C) 2017, deb.monish <deb.monish@gmail.com>
+Package: biz.jmaconsulting.civimoodle.afabc
+Copyright (C) 2017, deb.monish <monish.deb@jmaconsulting.biz>
 Licensed under the GNU Affero Public License 3.0 (below).
 
 -------------------------------------------------------------------------------

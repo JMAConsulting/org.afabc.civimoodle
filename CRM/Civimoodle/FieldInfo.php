@@ -46,7 +46,7 @@ class CRM_Civimoodle_FieldInfo {
       return array(
         'username' => array(
           'name' => 'username',
-          'label' => ts('Username', array('domain' => 'org.afabc.civimoodle')),
+          'label' => ts('Username', array('domain' => 'biz.jmaconsulting.civimoodle.afabc')),
           'text_length' => 20,
           'data_type' => 'String',
           'html_type' => 'Text',
@@ -54,7 +54,7 @@ class CRM_Civimoodle_FieldInfo {
         ),
         'password' => array(
           'name' => 'password',
-          'label' => ts('Password', array('domain' => 'org.afabc.civimoodle')),
+          'label' => ts('Password', array('domain' => 'biz.jmaconsulting.civimoodle.afabc')),
           'text_length' => 20,
           'data_type' => 'String',
           'html_type' => 'Text',
@@ -62,7 +62,7 @@ class CRM_Civimoodle_FieldInfo {
         ),
         'user_id' => array(
           'name' => 'user_id',
-          'label' => ts('User ID', array('domain' => 'org.afabc.civimoodle')),
+          'label' => ts('User ID', array('domain' => 'biz.jmaconsulting.civimoodle.afabc')),
           'data_type' => 'Int',
           'html_type' => 'Text',
           'is_view' => 1,
@@ -74,7 +74,7 @@ class CRM_Civimoodle_FieldInfo {
        return array(
          'courses' => array(
            'name' => 'courses',
-           'label' => ts('Courses', array('domain' => 'org.afabc.civimoodle')),
+           'label' => ts('Courses', array('domain' => 'biz.jmaconsulting.civimoodle.afabc')),
            'data_type' => 'String',
            'html_type' => 'Multi-Select',
          ),
