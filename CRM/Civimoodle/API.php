@@ -126,6 +126,13 @@ class CRM_Civimoodle_API {
   }
 
   /**
+   * Function to core_grades_get_grades webservice to enroll moodle user for given course
+   */
+  public function getGrades() {
+    return $this->sendRequest('core_grades_get_grades');
+  }
+
+  /**
    * Function used to make Moodle API request
    *
    * @param string $apiFunc
@@ -167,6 +174,12 @@ class CRM_Civimoodle_API {
           $searchArgs[] = "enrolments[0][$arg]=" . $this->_searchParams[$arg];
         }
         break;
+
+      case 'core_grades_get_grades':
+          $searchArgs[] = "courseid=" . $this->_searchParams['course_id'];
+          $searchArgs[] = "userids[0]=" . $this->_searchParams['user_id'];
+        break;
+
       default:
         //do nothing
         break;

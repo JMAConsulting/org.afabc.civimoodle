@@ -29,23 +29,52 @@ function civicrm_api3_job_ProcessRedflags($params) {
     'id' => $params['event_id'],
   ));
   $courseIDs = CRM_Utils_Array::value($courseKey, $result, array());
+  $courseNames = CRM_Civimoodle_Util::getAvailableCourseNames();
   if (count($courseIDs)) {
     $contactIDs = array();
     $result = civicrm_api3('Participant', 'get', array(
       'return' => array("contact_id", "id"),
       'event_id' => $params['event_id'],
     ));
-    foreach ($result as $value) {
+    foreach ($result['values'] as $value) {
       $contactID = $value['contact_id'];
       if (!array_key_exists($contactID, $contactIDs)) {
         $userID = civicrm_api3('Contact', 'getvalue', array(
           'return' => $userKey,
           'id' => $contactID,
         ));
+
+        // if no moodle $userID then skip
         if (!$userID) {
           continue;
         }
-        // 2.3 call 'core_grades_get_grades' webservice to fetch all grades on basis of course id and user id (fetched in 2.2)
+
+        foreach ($courseIDs as $courseID) {
+          // fetch grades for given $courseID and $userID
+          $criteria = array(
+            'course_id' => $courseID,
+            'user_id' => $userID,
+          );
+          list($isError, $response) = CRM_Civimoodle_API::singleton($criteria, TRUE)->getGrades();
+          $grades = CRM_Utils_Array::value('items', json_decode($response, TRUE));
+
+          //if grades found for $courseID
+          if (!$isError && !empty($grades)) {
+            foreach ($grades as $grade) {
+              // if Red flag grade found
+              if ($grade['name'] == 'Red Flag Scale - Offline Activity' && !empty($grade['grades'][0])) {
+                $activityParams = array(
+                  'activity_type_id' => 'red_flag',
+                  'subject' => CRM_Utils_Array::value($courseID, $courseNames),
+                  'source_record_id' => $value['participant_id'],
+                  'target_contact_id' => $value['contact_id'],
+                );
+                // create/update/delete red flag activity
+                CRM_Civimoodle_Util::recordRedFlagActivity($activityParams, $grade['grades'][0]);
+              }
+            }
+          }
+        }
       }
       $contactIDs[$contactID] = NULL;
     }
