@@ -5,7 +5,7 @@
 /**
  * Base class which provides helpers to execute upgrade logic
  */
-class CRM_Civimoodle_Upgrader_Base {
+class CRM_AFABC_Civimoodle_Upgrader_Base {
 
   /**
    * @var varies, subclass of ttis
@@ -38,7 +38,7 @@ class CRM_Civimoodle_Upgrader_Base {
   static public function instance() {
     if (! self::$instance) {
       // FIXME auto-generate
-      self::$instance = new CRM_Civimoodle_Upgrader(
+      self::$instance = new CRM_AFABC_Civimoodle_Upgrader(
         'biz.jmaconsulting.civimoodle.afabc',
         realpath(__DIR__ .'/../../../')
       );

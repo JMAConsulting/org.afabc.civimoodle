@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <extension key="biz.jmaconsulting.civimoodle.afabc" type="module">
   <downloadUrl>https://github.com/JMAConsulting/biz.jmaconsulting.civimoodle.afabc/archive/v1.0.zip</downloadUrl>
-  <file>civimoodle</file>
+  <file>afabc_civimoodle</file>
   <name>AFABC CiviCRM Moodle Integration Extension</name>
   <description></description>
   <license>AGPL-3.0</license>
@@ -23,6 +23,6 @@
   </compatibility>
   <comments>This is a new, undeveloped module</comments>
   <civix>
-    <namespace>CRM/Civimoodle</namespace>
+    <namespace>CRM/AFABC/Civimoodle</namespace>
   </civix>
 </extension>

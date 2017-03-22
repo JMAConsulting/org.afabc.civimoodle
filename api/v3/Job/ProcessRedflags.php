@@ -55,7 +55,7 @@ function civicrm_api3_job_ProcessRedflags($params) {
             'course_id' => $courseID,
             'user_id' => $userID,
           );
-          list($isError, $response) = CRM_Civimoodle_API::singleton($criteria, TRUE)->getGrades();
+          list($isError, $response) = CRM_AFABC_Civimoodle_API::singleton($criteria, TRUE)->getGrades();
           $grades = CRM_Utils_Array::value('items', json_decode($response, TRUE));
 
           //if grades found for $courseID
@@ -70,7 +70,7 @@ function civicrm_api3_job_ProcessRedflags($params) {
                   'target_contact_id' => $value['contact_id'],
                 );
                 // create/update/delete red flag activity
-                CRM_Civimoodle_Util::recordRedFlagActivity($activityParams, $grade['grades'][0]);
+                CRM_AFABC_Civimoodle_Util::recordRedFlagActivity($activityParams, $grade['grades'][0]);
               }
             }
           }
