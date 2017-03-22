@@ -72,7 +72,9 @@ function civimoodle_civicrm_fieldOptions($entity, $field, &$options, $params) {
       if (!$isError && isset($courses) && count($courses)) {
         $options = array();
         foreach ($courses as $course) {
-          $options[$course['id']] = $course['fullname'];
+          if (!empty($course['categoryid'])) {
+            $options[$course['id']] = $course['fullname'];
+          }
         }
       }
     }
@@ -92,11 +94,29 @@ function civimoodle_civicrm_post($op, $objectName, $objectId, &$objectRef) {
       // create/update moodle user based on CiviCRM contact ID information
       $userID = CRM_Civimoodle_Util::createUser($objectRef->contact_id);
       // enroll user of given $userID to multiple courses $courses
-      CRM_Civimoodle_Util::enrollUser($courses, $userID);
+      if (!empty($userID)) {
+        CRM_Civimoodle_Util::enrollUser($courses, $userID);
+      }
     }
   }
 }
 
+/**
+ * Implements hook_civicrm_validateForm().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_validateForm
+ */
+function civimoodle_civicrm_validateForm($formName, &$fields, &$files, &$form, &$errors) {
+  if ($formName == 'CRM_Event_Form_Participant' && !($form->_action & CRM_Core_Action::DELETE)) {
+    $courses = CRM_Civimoodle_Util::getCoursesFromEvent($fields['event_id']);
+    if (isset($courses) &&
+      count($courses) > 0 &&
+      CRM_Civimoodle_Util::moodleCredentialPresent($form->_contactId)
+    ) {
+      $errors['event_id'] = ts('Moodle Username or Password not found.');
+    }
+  }
+}
 
 /**
  * Implements hook_civicrm_upgrade().
@@ -124,19 +144,19 @@ function civimoodle_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  */
 function civimoodle_civicrm_managed(&$entities) {
   $entities[] = array(
-   'module' => 'biz.jmaconsulting.civimoodle.afabc',
-   'name' => 'Add Red Flag activity',
-   'entity' => 'Job',
-   'params' => array (
-     'version' => 3,
-     'name' => 'Add Red Flag activity',
-     'description' => 'Add activity of type red_flag to all participants which are enrolled for given courses',
-     'run_frequency' => 'Daily',
-     'api_entity' => 'Job',
-     'api_action' => 'ProcessRedflags',
-     'parameters' => 'event_id=[Event ID]',
-   ),
- );
+    'module' => 'biz.jmaconsulting.civimoodle.afabc',
+    'name' => 'Add Red Flag activity',
+    'entity' => 'Job',
+    'params' => array (
+      'version' => 3,
+      'name' => 'Add Red Flag activity',
+      'description' => 'Add activity of type red_flag to all participants which are enrolled for given courses',
+      'run_frequency' => 'Daily',
+      'api_entity' => 'Job',
+      'api_action' => 'ProcessRedflags',
+      'parameters' => 'event_id=[Event ID]',
+    ),
+  );
   _civimoodle_civix_civicrm_managed($entities);
 }
 
