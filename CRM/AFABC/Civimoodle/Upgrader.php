@@ -13,16 +13,6 @@ class CRM_AFABC_Civimoodle_Upgrader extends CRM_AFABC_Civimoodle_Upgrader_Base {
    *
    */
   public function install() {
-    civicrm_api3('OptionGroup', 'get', array(
-      'name' => "activity_type",
-      'api.OptionValue.create' => array(
-        'option_group_id' => "\$value.id",
-        'label' => "Red Flag",
-        'name' => "red_flag",
-        'description' => 'Activity to record that a student is red flagged for some grade',
-        'is_reserved' => TRUE,
-      ),
-    ));
   }
 
   /**
@@ -30,11 +20,6 @@ class CRM_AFABC_Civimoodle_Upgrader extends CRM_AFABC_Civimoodle_Upgrader_Base {
    *
    */
   public function uninstall() {
-    $result = civicrm_api3('Activity', 'get', array('activity_type_id' => 'red_flag'));
-    // delete all desired activities
-    foreach ($result['values'] as $id => $doNotCare) {
-      civicrm_api3('Activity', 'delete', array('id' => $id));
-    }
   }
 
   /**
@@ -42,13 +27,6 @@ class CRM_AFABC_Civimoodle_Upgrader extends CRM_AFABC_Civimoodle_Upgrader_Base {
    *
    */
   public function enable() {
-    civicrm_api3('OptionValue', 'get', array(
-      'name' => "red_flag",
-      'api.OptionValue.create' => array(
-        'id' => "\$value.id",
-        'is_active' => TRUE,
-      ),
-    ));
   }
 
   /**
@@ -56,13 +34,6 @@ class CRM_AFABC_Civimoodle_Upgrader extends CRM_AFABC_Civimoodle_Upgrader_Base {
    *
    */
   public function disable() {
-    civicrm_api3('OptionValue', 'get', array(
-      'name' => "red_flag",
-      'api.OptionValue.create' => array(
-        'id' => "\$value.id",
-        'is_active' => FALSE,
-      ),
-    ));
   }
 
 }

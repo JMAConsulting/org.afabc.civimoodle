@@ -84,6 +84,7 @@ function afabc_civimoodle_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_managed
  */
 function afabc_civimoodle_civicrm_managed(&$entities) {
+  _afabc_civimoodle_civix_civicrm_managed($entities);
   $entities[] = array(
     'module' => 'biz.jmaconsulting.civimoodle.afabc',
     'name' => 'Add Red Flag activity',
@@ -98,7 +99,18 @@ function afabc_civimoodle_civicrm_managed(&$entities) {
       'parameters' => 'event_id=[Event ID]',
     ),
   );
-  _afabc_civimoodle_civix_civicrm_managed($entities);
+  $entities[] = array(
+    'module' => 'biz.jmaconsulting.civimoodle.afabc',
+    'name' => 'red_flag',
+    'entity' => 'OptionValue',
+    'params' => array(
+      'version' => 3,
+      'label' => 'Red Flag',
+      'name' => 'red_flag',
+      'description' => 'Activity to record that a student is red flagged for some grade',
+      'option_group_id' => 'activity_type',
+    ),
+  );
 }
 
 /**
