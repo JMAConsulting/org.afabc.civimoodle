@@ -8,7 +8,7 @@
  * @return void
  * @see http://wiki.civicrm.org/confluence/display/CRMDOC/API+Architecture+Standards
  */
-function _civicrm_api3_job_process_redflags_spec(&$spec) {
+function _civicrm_api3_job_processredflags_spec(&$spec) {
   $spec['event_id']['api.required'] = 1;
 }
 
@@ -21,7 +21,7 @@ function _civicrm_api3_job_process_redflags_spec(&$spec) {
  * @see civicrm_api3_create_error
  * @throws API_Exception
  */
-function civicrm_api3_job_process_redflags($params) {
+function civicrm_api3_job_processredflags($params) {
   $courseKey = CRM_Civimoodle_Util::getCustomFieldKey('courses');
   $userKey = CRM_Civimoodle_Util::getCustomFieldKey('user_id');
   $result = civicrm_api3('Event', 'getsingle', array(
