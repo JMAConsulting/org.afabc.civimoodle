@@ -95,7 +95,7 @@ function afabc_civimoodle_civicrm_managed(&$entities) {
       'description' => 'Add activity of type red_flag to all participants which are enrolled for given courses',
       'run_frequency' => 'Daily',
       'api_entity' => 'Job',
-      'api_action' => 'processredflags',
+      'api_action' => 'Processredflags',
       'parameters' => 'event_id=[Event ID]',
     ),
   );
